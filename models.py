@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from taggit.managers import TaggableManager
 
 
 class PublishedManager(models.Manager):
@@ -12,6 +13,9 @@ class PublishedManager(models.Manager):
 class Post(models.Model):
     """Модель данных для постов блога
         title - заголовок, slug - метка (для БД), body - тело поста"""
+
+    tags = TaggableManager()
+
 
     class Status(models.TextChoices):
         DRAFT = 'DF', 'Draft'
