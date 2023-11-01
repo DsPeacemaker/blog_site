@@ -16,7 +16,6 @@ class Post(models.Model):
 
     tags = TaggableManager()
 
-
     class Status(models.TextChoices):
         DRAFT = 'DF', 'Draft'
         PUBLISHED = 'PB', 'Published'
