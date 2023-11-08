@@ -40,6 +40,7 @@ def post_comment(request, post_id):
 
 
 def post_share(request, post_id):
+    '''Поделиться постом через mail'''
     # Извлечь пост по идентификатору
     post = get_object_or_404(Post,
                              id=post_id,
@@ -58,7 +59,7 @@ def post_share(request, post_id):
             subject = f"{cd['name']} тебе рекомендуется это прочитать {post.title}"
             message = f"Читать {post.title} по ссылке {post_url}\n\n" \
                       f"{cd['name']} комментарий к письму: {cd['comments']}"
-            send_mail(subject, message, 'denisstalker2000@gmail.com', [cd['to']])
+            send_mail(subject, message, '****', [cd['to']])
             # send_mail(subject, message, 'your_account@mail.com', [cd['to']])
             sent = True
     else:
@@ -110,6 +111,7 @@ def post_detail(request, year, month, day, post):
 
 
 def post_search(request):
+    '''Текстовый поиск в постах'''
     form = SearchForm()
     query = None
     results = []
