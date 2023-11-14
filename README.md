@@ -5,11 +5,12 @@
 2. Система комментариев 
 3. Система тэгирования постов по темам
 4. Рекомендация постов по эл. почте
-5. Новостной RSS-ленты
+5. Добавлена поддержка синтаксиса Markdown
+6. Новостной RSS-ленты
 
   На домашней странице можно ознакомиться с последними постами, самыми комментируемыми постами, 
   подписаться на рассылку RSS-ленты с новыми постами, найти похожие посты по тэгам, 
-  перейти на следующую страницу приложения
+  перейти на следующую страницу приложения.
   
 -----
 ![home_page](https://sun9-77.userapi.com/impg/d4EfxzcgoSVgp7MSGK-L4Oa5NNQr_n52VtRS1w/Ah4fqNW4cAk.jpg?size=1280x717&quality=96&sign=e5de4dce0746614bb43ae7b3ad0b7cac&type=album "home")
@@ -22,7 +23,7 @@
 
 ## Рекомендация по эл. почте
 
-Механизм реализован с помощью STMP-сервера Google. Для использования вам необходимо указать в поле ```EMAIL_HOST_USER``` свою учетную запись (в моем случае Gmail)
+Механизм реализован с помощью STMP-сервера Google. Для использования вам необходимо указать в поле ```EMAIL_HOST_USER``` свою учетную запись (в моем случае Gmail).
 ```
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'your_account@gmail.com'
@@ -33,15 +34,20 @@ EMAIL_USE_TLS = True
 Если вы не можете использовать STMP-сервер, то можно отправлять рекомендательные письма в консоль раскомментировав следующий настроечный параметр:
 ```EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'```
 
+Под телом поста есть кнопка ```share this post``` с помощью которой, можно отправить ссылку на пост со своими комментариями по электронной почте.
+В форме отправки поста есть проверка на ошибки валидации. 
+В случае ошибки заполнения полей невалидными данными форма не будет передана на обработку, и браузер сообщит об ошибке у некорректно заполненых полей.
 
 -----
 ![share](https://sun9-30.userapi.com/impg/Em3q4PLK47gPG9RT9FtTEFkBOFhtpGk4_dGHHQ/yDLnSgbHilM.jpg?size=664x503&quality=96&sign=6e82f16222b79efc7738e88cd969ce87&type=album "share")
-
+## Поиск по постам
+Полнотекстовый поиск поиск реализован с помощью PostgreSQL. Операции поиска осуществляются, используя наборы запросов QuerySet.
 
 -----
 ![search](https://sun9-57.userapi.com/impg/8RapDMSBLQpONIQqfaWP464Oh09m9_1sJ-x30w/9nTA2ihC-x0.jpg?size=674x382&quality=96&sign=502b140bca822a206b129b9ef7d26848&type=album "search")
 
-
+## RSS-лента
+Реализован функционал новостной RSS-ленты.
 
 -----
 ![RSS](https://sun9-77.userapi.com/impg/VD4ylRC6J0Gvy4QyG5wNCrMFSU_Dk2sVrBtZMw/R2qewuYdEn8.jpg?size=1198x690&quality=96&sign=a266cd2f9b511474e683a3ed68d44f4a&type=album "RSS")
